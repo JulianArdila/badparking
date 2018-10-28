@@ -120,5 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#Se toma los css, img, js y  otros archivos y los crear como obejto 
+#para poder utilarlos en las paginas web
+#mirar urls donde se importan
+
 MEDIA_ROOT = 'C:\\Users\\CECA\\Documents\\badparking\\backend\\media'
 MEDIA_URL = '/media/'

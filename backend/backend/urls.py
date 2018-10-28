@@ -27,5 +27,7 @@ urlpatterns = [
     path('inicio/',views.principal),
 ]
 
+
+#se importan las carpetas para uso de las paginas web
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
