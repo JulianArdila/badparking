@@ -31,7 +31,7 @@ class IngreMalParqueado(models.Model):
     confiden = models.IntegerField()
     
     def __str__(self):
-        return self.nombre
+        return self.fecha_de_registro
 
 class Calificacion(models.Model):
     valor = models.IntegerField()
@@ -39,4 +39,4 @@ class Calificacion(models.Model):
     ingreso_mal_parqueado = models.ForeignKey(IngreMalParqueado,on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.nombre
+        return self.usuario
