@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class TipoUsuario(models.Model):
     nombre = models.CharField(max_length=100)
@@ -13,8 +13,8 @@ class Usuarios(models.Model):
     fecha_nacimiento = models.DateTimeField(auto_now_add=True)
     correo = models.CharField(max_length=150)
     telefono = models.IntegerField()
-    usuario = models.CharField(max_length=60)
-    clave = models.CharField(max_length=60)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    perfil = models.TextField(max_length=500, blank=True)
     tipo = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -22,8 +22,7 @@ class Usuarios(models.Model):
 
 class IngreMalParqueado(models.Model):
     foto_ubicacion = models.CharField(max_length=300)
-    latitud = models.CharField(max_length=60)
-    longitud = models.CharField(max_length=60)
+    ubicacion = models.CharField(max_length=60)
     fecha_de_registro = models.DateField()
     hora_de_registro = models.TimeField()
     usuario = models.ForeignKey(Usuarios,on_delete=models.CASCADE)

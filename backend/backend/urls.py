@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf.urls import url, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,6 +25,10 @@ from badparking import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/',views.principal),
+    url(r'^', include(('badparking.urls','tipo usuarios'))),
+    url(r'^', include(('badparking.urls','usuarios'))),
+    url(r'^', include(('badparking.urls','registros mal parquedos'))),
+    url(r'^', include(('badparking.urls','calificacion'))),
 ]
 
 
