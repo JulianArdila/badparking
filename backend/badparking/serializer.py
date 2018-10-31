@@ -19,7 +19,7 @@ class UsuariosSeializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'nombre', 'apellido','correo', 'fecha_nacimiento', 'perfil')
+        fields = ('id', 'username', 'password', 'nombre', 'apellido','telefono','correo', 'fecha_nacimiento','tipo' ,'perfil')
     
     def create(self, validated_data, instance=None):
         user_data = validated_data.pop('user')

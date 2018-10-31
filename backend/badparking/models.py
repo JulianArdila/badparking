@@ -10,7 +10,7 @@ class TipoUsuario(models.Model):
 class Usuarios(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateTimeField(auto_now_add=True)
+    fecha_nacimiento = models.DateField(auto_now_add=True)
     correo = models.CharField(max_length=150)
     telefono = models.IntegerField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -30,7 +30,7 @@ class IngreMalParqueado(models.Model):
     confiden = models.IntegerField()
     
     def __str__(self):
-        return self.fecha_de_registro
+        return "Mal Parqueado de la placa: "+self.placa+" fecha: "+str(self.fecha_de_registro)
 
 class Calificacion(models.Model):
     valor = models.IntegerField()
@@ -38,4 +38,4 @@ class Calificacion(models.Model):
     ingreso_mal_parqueado = models.ForeignKey(IngreMalParqueado,on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.usuario
+        return str(self.ingreso_mal_parqueado)

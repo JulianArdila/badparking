@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,79 @@
     <title>BadParking</title>
     <link rel="stylesheet" href="/media/css/bootstrap.min.css">
 </head>
-<body>
-    <div class="alert alert-primary" role="alert">
-        Hola mundo
-      </div>
 
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Registro Usuario</h1>
+            <p class="lead">Bienvenido a BadPrking en busca de mejorar la movilidad en Bogotá:</p>
+            <hr class="my-4">
+            <form action="/usuarios/" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese apellido">
+                </div>
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Ingrese código">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese código">
+                </div>
+                <div class="form-group">
+                    <label for="numero">Numero</label>
+                    <input type="number" min="999999" class="form-control" id="numero" name="numero" placeholder="Ingrese código">
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select class="form-control" id="tipo" name="tipo">
+                        <option value="">Selcione un Tipo de Usuario</option>
+                        {% for dato in tipo %}
+                        <option value="{{ dato.id }}">{{ dato.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="username">Nombre del usuario</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese código">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Ingrese código">
+                </div>
+                {% csrf_token %}
+            </form>
+            <button type="button" class="btn btn-primary" onclick="registrarAlumno()">Registrar</button>
+            <hr class="my-4">
+            <div id="alumnosajax"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function registrarAlumno() {
+            var nombre = $("#nombre").val();
+            var apellido = $("#apellido").val();
+            var fecha_nacimiento = $("#fecha_nacimiento").val();
+            var correo = $("#correo").val();
+            var numero = $("#numero").val();
+            var tipo = $('#tipo').val();
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+
+            $.post("/usuarios/", {
+                nombre: nombre, apellido: apellido, fecha_nacimiento: fecha_nacimiento, correo: correo, telefono: numero, tipo: tipo, password: password, username: username,csrfmiddlewaretoken: csrfmiddlewaretoken
+            }).done(function (data) {
+                alert("Usuario registrado exitosamente!");
+            });
+        }
+    </script>
     <script src="/media/js/jquery-3.3.1.min.js"></script>
     <script src="/media/js/bootstrap.min.js"></script>
 </body>
+
 </html>
