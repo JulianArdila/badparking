@@ -23,10 +23,10 @@ from django.conf.urls.static import static
 from badparking import views
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('inicio/',views.principal),
     url(r'^', include(('badparking.urls','*'))),
-    url('rest-auth/', include('rest_auth.urls')),
+    url('api/', include('rest_auth.urls')),
 ]
 
 

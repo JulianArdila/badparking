@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
+    'rest_auth',
     'badparking',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,3 +135,27 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = 'C:\\Users\\CECA\\Documents\\badparking\\backend\\media'
 MEDIA_URL = '/media/'
+
+#Codigo para pedir credenciales 
+
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+'rest_framework.authentication.TokenAuthentication',
+),
+'DEFAULT_PERMISSION_CLASSES': (
+'rest_framework.permissions.IsAuthenticated',
+),
+}
+
+#Permitir metodos para la app
+
+CORS_ORIGIN_WHITELIST = (
+'localhost:8000',
+)
+CORS_ALLOW_METHODS = (
+'DELETE',
+'GET',
+'PATCH',
+'POST',
+'PUT',
+)
