@@ -1,8 +1,10 @@
+import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
-import { HomePage } from '../home/home';
+import { Home2Page } from '../home2/home2';
+import { empty } from 'rxjs/Observer';
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,18 +21,19 @@ export class LoginPage {
   usuario: any;
   clave: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public restProvider: RestProvider,public actionSheetCtrl: ActionSheetController) {
+    if(window.localStorage['token']){
+      this.navCtrl.setRoot(HomePage);
+    }
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
   logiIn() {
     var data = { 'username': this.usuario, 'password': this.clave };
     this.restProvider.login(data).then((result:any) => {
       console.log(result);
       window.localStorage['token'] = result.key;
-      this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(HomePage);
     }, (err) => {
       console.log(err);
     });

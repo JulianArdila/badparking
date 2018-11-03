@@ -1,3 +1,4 @@
+import { Home2Page } from './../pages/home2/home2';
 import { LoginPage } from './../pages/login/login';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -9,12 +10,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RestProvider } from '../providers/rest/rest';
+import { RegistroMalParquedoPage } from '../pages/registro-mal-parquedo/registro-mal-parquedo';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    Home2Page,
+    RegistroMalParquedoPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { RestProvider } from '../providers/rest/rest';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    Home2Page,
+    RegistroMalParquedoPage
   ],
   providers: [
     StatusBar,
