@@ -5,6 +5,7 @@ import { ActionSheetController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { Home2Page } from '../home2/home2';
 import { empty } from 'rxjs/Observer';
+import { RegistroPage } from '../registro/registro';
 /**
  * Generated class for the LoginPage page.
  *
@@ -38,7 +39,9 @@ export class LoginPage {
       console.log(err);
     });
   }
-
+  mostrarRegistro() {
+    this.navCtrl.push(RegistroPage);
+    }
   presentActionSheet() {
     const actionSheet = this.actionSheetCtrl.create({
       title: 'Modify your album',

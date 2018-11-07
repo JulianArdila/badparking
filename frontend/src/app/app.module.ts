@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RestProvider } from '../providers/rest/rest';
 import { RegistroMalParquedoPage } from '../pages/registro-mal-parquedo/registro-mal-parquedo';
+import { RegistroPage } from '../pages/registro/registro';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegistroMalParquedoPage } from '../pages/registro-mal-parquedo/registro
     HomePage,
     LoginPage,
     Home2Page,
-    RegistroMalParquedoPage
+    RegistroMalParquedoPage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { RegistroMalParquedoPage } from '../pages/registro-mal-parquedo/registro
     HomePage,
     LoginPage,
     Home2Page,
-    RegistroMalParquedoPage
+    RegistroMalParquedoPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

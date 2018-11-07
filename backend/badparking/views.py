@@ -3,6 +3,8 @@ from django.shortcuts import render_to_response
 from rest_framework import generics
 from badparking.models import *
 from badparking.serializer import *
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import AllowAny
 # Create your views here.
 
 
@@ -10,8 +12,8 @@ def principal(request):
     tipo = TipoUsuario.objects.all()
     return render(request,"paginaPrincipal.html", {'tipo': tipo})
 
-
-class TipoUsuarioList(generics.ListCreateAPIView):
+@permission_classes((AllowAny,))
+class TipoUsuarioList(generics.ListAPIView):
     serializer_class = TipoUsuarioSeializer
     queryset = TipoUsuario.objects.all()
 

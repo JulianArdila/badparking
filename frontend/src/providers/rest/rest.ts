@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -27,5 +27,26 @@ export class RestProvider {
         });
     });
   }
-
+  logoutService = 'api/logout/';
+  logOut() {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + this.logoutService, {},  {
+        headers: new HttpHeaders().set('Authorization', 'token '+window.localStorage['token'])
+    }).subscribe(data => {
+          resolve(data);
+        }, err => {
+          reject(err);
+        });
+    });
+  }
+  TipoUsuariosapi = 'api/logout/';
+  ConsultTipoUsuarios(){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + this.TipoUsuariosapi, {}).subscribe(data => {
+          resolve(data);
+        }, err => {
+          reject(err);
+        });
+    });
+  }
 }
