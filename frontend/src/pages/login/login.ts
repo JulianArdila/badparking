@@ -42,6 +42,7 @@ export class LoginPage {
   mostrarRegistro() {
     this.navCtrl.push(RegistroPage);
     }
+  
   presentActionSheet() {
     const actionSheet = this.actionSheetCtrl.create({
       title: 'Modify your album',

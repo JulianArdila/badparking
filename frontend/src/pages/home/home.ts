@@ -12,12 +12,29 @@ import { LoginPage } from '../login/login';
 export class HomePage {
   ingresar:any;
   Home2Page: any;
-
+  usuario:Number;
+  datosUsuarios:any;
   constructor(public navCtrl: NavController, public restProvider: RestProvider) {
-    this.Home2Page = Home2Page;
-    this.ingresar = RegistroMalParquedoPage;
+    if(window.localStorage['tipo']==1){
+      this.Home2Page = Home2Page;
+      this.ingresar = RegistroMalParquedoPage;
+    }else{
+      this.Home2Page = Home2Page;
+      this.ingresar = RegistroMalParquedoPage;
+    }
+    
   }
-  
+  ionViewDidLoad() {
+    this.consultarUsuarioActual();
+    }
+  consultarUsuarioActual() {
+    this.restProvider.getUsuarioActual()
+    .then((data:any) => {
+    this.usuario = data.tipo;
+    window.localStorage['tipo']=this.usuario
+    console.log(this.usuario)
+    });
+    }
   logOut(){
     this.restProvider.logOut().then((result:any) => {
       console.log(result);

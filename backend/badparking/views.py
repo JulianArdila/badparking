@@ -3,8 +3,10 @@ from django.shortcuts import render_to_response
 from rest_framework import generics
 from badparking.models import *
 from badparking.serializer import *
+from badparking.permissions import IsPostOrIsAuthenticated
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
+from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 
@@ -17,15 +19,16 @@ class TipoUsuarioList(generics.ListAPIView):
     serializer_class = TipoUsuarioSeializer
     queryset = TipoUsuario.objects.all()
 
-
 class TipoUsuarioDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TipoUsuarioSeializer
     queryset = TipoUsuario.objects.all()
 
-
+@permission_classes((IsPostOrIsAuthenticated, ))    
 class UsuariosList(generics.ListCreateAPIView):
     serializer_class = UsuariosSeializer
     queryset = Usuarios.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user_id',)
 
 
 class UsuariosDetail(generics.RetrieveUpdateDestroyAPIView):

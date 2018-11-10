@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'badparking',
+    'django_filters',
     'rest_framework',
     'corsheaders',
 ]
@@ -145,6 +146,8 @@ REST_FRAMEWORK = {
 'DEFAULT_PERMISSION_CLASSES': (
 'rest_framework.permissions.IsAuthenticated',
 ),
+'DEFAULT_FILTER_BACKENDS':
+('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
 #Permitir metodos para la app
